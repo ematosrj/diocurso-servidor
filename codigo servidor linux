@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Update package repository
+sudo apt-get update
+
+# Install Apache Web Server
+sudo apt-get install apache2 -y
+
+# Start Apache service
+sudo service apache2 start
+
+# Enable Apache to start on boot
+sudo systemctl enable apache2
+
+# Install PHP
+sudo apt-get install php libapache2-mod-php -y
+
+# Install MySQL
+sudo apt-get install mysql-server php-mysql -y
+
+# Configure firewall to allow HTTP and HTTPS traffic
+sudo ufw allow in "Apache Full"
+
+# Restart Apache service
+sudo service apache2 restart
+
+# Verify Apache is running
+if curl -s http://localhost | grep -q "Apache2 Debian Default Page"; then
+  echo "Apache is running successfully."
+else
+  echo "Apache is not running."
+fi
+Este script realiza as seguintes tarefas:
+
+Atualiza o repositório de pacotes
+Instala o servidor web Apache
+Inicia o serviço Apache
+Configura o Apache para iniciar na inicialização do sistema
+Instala o PHP
+Instala o banco de dados MySQL
+Configura o firewall para permitir o tráfego HTTP e HTTPS
+Reinicia o serviço Apache
+Verifica se o Apache está em execução
+Lembre-se de que este script é apenas um exemplo básico e pode ser personalizado de acordo com suas necessidades específicas.
